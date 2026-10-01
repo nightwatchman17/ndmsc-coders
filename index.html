@@ -1,30 +1,139 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Home | Coders of NDMSC</title><link rel="stylesheet" href="style.css"></head><body>
-<header><div class="wrap"><a class="logo" href="index.html">&lt;Coders of <span>NDMSC</span>/&gt;</a><nav>
-<a href="index.html" class="active">Home</a><a href="mentors.html" >Mentors</a><a href="members.html" >Members</a><a href="projects.html" >Projects</a></nav></div></header>
-<div class="hero"><div class="wrap"><p class="code">// build. share. grow.</p><h1>Coders of NDMSC</h1>
-<p>A community of student programmers learning, building and showing real projects.</p>
-<a class="expo" href="projects.html"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#0e1a2e"/><path d="M32 8l5 14h15l-12 9 5 15-13-9-13 9 5-15-12-9h15z" fill="#ffc83d"/><text x="32" y="58" font-size="9" text-anchor="middle" fill="#27c4e6" font-family="monospace">&lt;/&gt;</text></svg>
-<span>ICT Exhibition 2026<small>See our exhibition projects</small></span></a></div></div>
-<section><div class="wrap"><div class="head"><h2>Our Mentors</h2><a href="mentors.html">View all</a></div>
-<div class="car"><button class="arrow" data-t="m" data-d="-1">&#10094;</button><div class="track" id="m">
-<div class="person"><img src="images/placeholder.svg" alt="Mentor Name 1"><h3>Mentor Name 1</h3><p>Mentor</p></div>
-<div class="person"><img src="images/placeholder.svg" alt="Mentor Name 2"><h3>Mentor Name 2</h3><p>Mentor</p></div>
-<div class="person"><img src="images/placeholder.svg" alt="Mentor Name 3"><h3>Mentor Name 3</h3><p>Mentor</p></div>
-</div><button class="arrow" data-t="m" data-d="1">&#10095;</button></div></div></section>
-<section style="background:#fff"><div class="wrap"><div class="head"><h2>Our Members</h2><a href="members.html">View all</a></div>
-<div class="car"><button class="arrow" data-t="b" data-d="-1">&#10094;</button><div class="track" id="b">
-<div class="person"><img src="images/placeholder.svg" alt="Member Name 1"><h3>Member Name 1</h3><p>Member</p></div>
-<div class="person"><img src="images/placeholder.svg" alt="Member Name 2"><h3>Member Name 2</h3><p>Member</p></div>
-<div class="person"><img src="images/placeholder.svg" alt="Member Name 3"><h3>Member Name 3</h3><p>Member</p></div>
-<div class="person"><img src="images/placeholder.svg" alt="Member Name 4"><h3>Member Name 4</h3><p>Member</p></div>
-<div class="person"><img src="images/placeholder.svg" alt="Member Name 5"><h3>Member Name 5</h3><p>Member</p></div>
-<div class="person"><img src="images/placeholder.svg" alt="Member Name 6"><h3>Member Name 6</h3><p>Member</p></div>
-<div class="person"><img src="images/placeholder.svg" alt="Member Name 7"><h3>Member Name 7</h3><p>Member</p></div>
-<div class="person"><img src="images/placeholder.svg" alt="Member Name 8"><h3>Member Name 8</h3><p>Member</p></div>
-</div><button class="arrow" data-t="b" data-d="1">&#10095;</button></div></div></section>
-<section><div class="wrap"><div class="head"><h2>Latest Projects</h2><a href="projects.html">View all</a></div><div class="cards">
-<div class="card"><img src="images/placeholder.svg" alt=""><div><h3>Project Title 1</h3><p>Short description of the project.</p><span class="tag wip">In progress</span></div></div>
-<div class="card"><img src="images/placeholder.svg" alt=""><div><h3>Project Title 2</h3><p>Short description of the project.</p><span class="tag done">Completed</span></div></div>
-</div></div></section>
-<script>document.querySelectorAll('.arrow').forEach(b=>b.onclick=()=>{const t=document.getElementById(b.dataset.t);t.scrollBy({left:b.dataset.d*320})})</script>
-<footer>&copy; 2026 Coders of NDMSC</footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b2d">
+  <meta name="description" content="Meet the Coders of NDMSC and discover what we are building for the ICT Exhibition 2026.">
+  <title>Coders of NDMSC | ICT Exhibition 2026</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="logo" href="index.html" aria-label="Coders of NDMSC home"><span class="logo-mark">&lt;/&gt;</span> Coders <span class="logo-muted">of NDMSC</span></a>
+      <nav aria-label="Main navigation">
+        <a href="index.html" class="active" aria-current="page">Home</a>
+        <a href="mentors.html">Mentors</a>
+        <a href="members.html">Members</a>
+        <a href="projects.html">Projects</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="wrap hero-layout">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> NDMSC CODERS COMMUNITY</p>
+          <h1>Collaboration of<br><span>Curious Minds!</span></h1>
+          <p class="hero-description">We are student programmers learning together, sharing ideas, and turning them into things you can see and use.</p>
+          <a class="expo-button" href="projects.html">
+            <span class="expo-icon" aria-hidden="true">&lt;/&gt;</span>
+            <span class="expo-label"><strong>ICT Exhibition 2026</strong><small>Explore student projects <span aria-hidden="true">→</span></small></span>
+            <span class="live-badge"><i></i> LIVE NOW</span>
+          </a>
+          <p class="hero-note">A showcase of creativity, technology, and student ideas.</p>
+        </div>
+        <div class="hero-art" role="img" aria-label="A C++ program that prints Welcome to our coding community.">
+          <div class="art-orbit orbit-one"></div>
+          <div class="art-orbit orbit-two"></div>
+          <div class="code-window">
+            <div class="window-top"><span></span><span></span><span></span><i>ndmsc.dev</i></div>
+            <div class="code-lines">
+              <p><span class="line-number">01</span><span class="code-purple">#include</span> <span class="code-gold">&lt;iostream&gt;</span></p>
+              <p><span class="line-number">02</span></p>
+              <p><span class="line-number">03</span><span class="code-purple">using namespace</span> std;</p>
+              <p><span class="line-number">04</span></p>
+              <p><span class="line-number">05</span><span class="code-purple">int</span> main() {</p>
+              <p><span class="line-number">06</span>&nbsp;&nbsp;cout &lt;&lt; <span class="code-green">"Welcome to our coding community!"</span> &lt;&lt; endl;</p>
+              <p><span class="line-number">07</span>&nbsp;&nbsp;<span class="code-purple">return</span> <span class="code-gold">0</span>;</p>
+              <p><span class="line-number">08</span>}<span class="cursor"></span></p>
+            </div>
+          </div>
+          <div class="art-caption"><span class="caption-symbol">✳</span><span>LEARN <b>·</b> MAKE <b>·</b> SHARE</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro-section">
+      <div class="wrap intro-layout">
+        <div>
+          <p class="section-kicker">WHO WE ARE</p>
+          <h2>Built on curiosity.<br>Powered by code.</h2>
+        </div>
+        <p class="intro-copy">Coders of NDMSC is a community where students explore technology, learn by doing, and support one another. The ICT Exhibition is our chance to bring those ideas out of the classroom and share them with you.</p>
+        <figure class="campus-photo"><img src="images/our_campus.png" alt="Aerial and courtyard views of the NDMSC campus" loading="lazy"><figcaption>Our campus · NDMSC</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="feature-section">
+      <div class="wrap">
+        <a class="exhibition-banner" href="projects.html">
+          <span class="exhibition-copy">
+            <span class="live-badge"><i></i> EXHIBITION LIVE NOW</span>
+            <strong class="exhibition-title">ICT Exhibition <span>2026</span></strong>
+            <span class="exhibition-description">Student ideas. Real technology. See what we're building.</span>
+            <span class="exhibition-cta">Explore the exhibition <span aria-hidden="true">↗</span></span>
+          </span>
+          <span class="exhibition-art" aria-hidden="true"><span class="exhibition-art-year">26</span><span class="exhibition-art-spark">✳</span><span class="exhibition-art-caption">IDEAS IN ACTION</span></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="projects-preview">
+      <div class="wrap">
+        <div class="section-heading">
+          <div><p class="section-kicker">A PROJECT IN PROGRESS</p><h2>From idea to invention</h2></div>
+          <a class="subtle-link" href="projects.html">Explore exhibition projects <span aria-hidden="true">→</span></a>
+        </div>
+        <a class="project-card" href="arduino-surveillance-car.html">
+          <span class="project-art" aria-hidden="true"><span class="project-chip">ARDUINO</span><span class="project-car"><span class="car-body"></span><span class="car-wheel wheel-left"></span><span class="car-wheel wheel-right"></span><span class="car-sensor"></span></span><span class="project-waves"></span></span>
+          <span class="project-card-copy"><span class="project-status">CONCEPT · IN PROGRESS</span><strong>Arduino Surveillance Car</strong><span>A student-built Arduino car concept for remote movement and basic area monitoring. Project details will be updated soon.</span><span class="text-link">View project details <span aria-hidden="true">→</span></span></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="people-preview">
+      <div class="wrap">
+        <div class="people-grid">
+          <div class="people-column">
+            <div class="section-heading">
+              <div><p class="section-kicker">STUDENT CREATORS</p><h2>Our members</h2></div>
+              <a class="subtle-link" href="members.html">All members <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="member-list">
+              <a class="member-card" href="members.html">
+                <img src="placeholder.svg" alt="Generic profile placeholder; member photo to be added" width="104" height="104" loading="lazy">
+                <span class="member-card-copy"><strong>Farshid</strong><small>Class 9 · Member</small></span>
+                <span class="mentor-arrow" aria-hidden="true">↗</span>
+              </a>
+              <a class="member-card" href="members.html">
+                <img src="placeholder.svg" alt="Generic profile placeholder; Abdullah Shikder's photo to be added" width="104" height="104" loading="lazy">
+                <span class="member-card-copy"><strong>Abdullah Shikder</strong><small>Class 9 · Member</small></span>
+                <span class="mentor-arrow" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+          <div class="people-column">
+            <div class="section-heading">
+              <div><p class="section-kicker">GUIDANCE &amp; INSPIRATION</p><h2>Our mentor</h2></div>
+              <a class="subtle-link" href="mentors.html">All mentors <span aria-hidden="true">→</span></a>
+            </div>
+            <a class="mentor-strip" href="mentors.html">
+              <img src="images/mentor_01.png" alt="Portrait of an NDMSC coding mentor" width="112" height="112" loading="lazy">
+              <span class="mentor-strip-copy"><strong>Our ICT Mentor</strong><small>Programmer · ICT Lecturer</small></span>
+              <span class="mentor-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner"><a class="logo footer-logo" href="index.html"><span class="logo-mark">&lt;/&gt;</span> Coders <span class="logo-muted">of NDMSC</span></a><p>Curious minds. Real creations.</p><span>© 2026 Coders of NDMSC</span></div>
+  </footer>
+</body>
+</html>
