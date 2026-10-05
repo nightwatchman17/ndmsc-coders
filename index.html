@@ -21,9 +21,25 @@
     </div>
   </header>
 
+  <section class="countdown-bar" aria-label="Exhibition countdown">
+    <div class="wrap countdown-inner">
+      <div class="countdown-clock" role="timer" aria-live="off" aria-label="Countdown to October 9, 2026">
+        <div class="countdown-unit"><span id="countdown-days">--</span><small>Days</small></div>
+        <span class="countdown-separator" aria-hidden="true">:</span>
+        <div class="countdown-unit"><span id="countdown-hours">--</span><small>Hours</small></div>
+        <span class="countdown-separator" aria-hidden="true">:</span>
+        <div class="countdown-unit"><span id="countdown-minutes">--</span><small>Minutes</small></div>
+        <span class="countdown-separator" aria-hidden="true">:</span>
+        <div class="countdown-unit"><span id="countdown-seconds">--</span><small>Seconds</small></div>
+      </div>
+      <p class="countdown-message" id="countdown-message" hidden>It's exhibition day!</p>
+    </div>
+  </section>
+
   <main>
     <section class="hero">
       <div class="hero-glow" aria-hidden="true"></div>
+      <canvas class="hero-web" aria-hidden="true"></canvas>
       <div class="wrap hero-layout">
         <div class="hero-copy">
           <p class="eyebrow"><span class="eyebrow-dot"></span> NDMSC CODERS COMMUNITY</p>
@@ -135,5 +151,134 @@
   <footer class="site-footer">
     <div class="wrap footer-inner"><a class="logo footer-logo" href="index.html"><span class="logo-mark">&lt;/&gt;</span> Coders <span class="logo-muted">of NDMSC</span></a><p>Curious minds. Real creations.</p><span>© 2026 Coders of NDMSC</span></div>
   </footer>
+  <script>
+    const exhibitionStart = new Date(2026, 9, 9);
+    const countdownMessage = document.getElementById("countdown-message");
+    const countdownClock = document.querySelector(".countdown-clock");
+    const countdownFields = {
+      days: document.getElementById("countdown-days"),
+      hours: document.getElementById("countdown-hours"),
+      minutes: document.getElementById("countdown-minutes"),
+      seconds: document.getElementById("countdown-seconds")
+    };
+
+    function updateCountdown() {
+      const remaining = exhibitionStart.getTime() - Date.now();
+
+      if (remaining <= 0) {
+        countdownMessage.textContent = "It's exhibition day!";
+        countdownClock.hidden = true;
+        countdownClock.setAttribute("aria-label", "The exhibition starts today");
+        return;
+      }
+
+      const days = Math.floor(remaining / 86400000);
+      const hours = Math.floor((remaining % 86400000) / 3600000);
+      const minutes = Math.floor((remaining % 3600000) / 60000);
+      const seconds = Math.floor((remaining % 60000) / 1000);
+
+      countdownFields.days.textContent = String(days).padStart(2, "0");
+      countdownFields.hours.textContent = String(hours).padStart(2, "0");
+      countdownFields.minutes.textContent = String(minutes).padStart(2, "0");
+      countdownFields.seconds.textContent = String(seconds).padStart(2, "0");
+      countdownClock.setAttribute("aria-label", `${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds until October 9, 2026`);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    const hero = document.querySelector(".hero");
+    const webCanvas = document.querySelector(".hero-web");
+    const webContext = webCanvas.getContext("2d");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let pointer = { x: 0, y: 0, active: false };
+    let canvasWidth = 0;
+    let canvasHeight = 0;
+    let frameRequested = false;
+
+    function drawWeb() {
+      frameRequested = false;
+      if (!webContext) return;
+
+      const isMobile = canvasWidth < 760;
+      const centerX = canvasWidth * (isMobile ? 0.5 : 0.73);
+      const centerY = canvasHeight * (isMobile ? 0.69 : 0.52);
+      const radius = Math.min(canvasWidth * (isMobile ? 0.46 : 0.37), canvasHeight * 0.49);
+      const spokes = 18;
+      const rings = 8;
+      const offsetX = pointer.active ? (pointer.x - centerX) * 0.035 : 0;
+      const offsetY = pointer.active ? (pointer.y - centerY) * 0.035 : 0;
+
+      webContext.clearRect(0, 0, canvasWidth, canvasHeight);
+      webContext.lineWidth = 1;
+      webContext.strokeStyle = "rgba(121, 225, 232, 0.13)";
+
+      for (let ring = 1; ring <= rings; ring += 1) {
+        const ringRadius = radius * ring / rings;
+        webContext.beginPath();
+        for (let spoke = 0; spoke <= spokes; spoke += 1) {
+          const angle = Math.PI * 2 * spoke / spokes;
+          const x = centerX + Math.cos(angle) * ringRadius + offsetX * ring / rings;
+          const y = centerY + Math.sin(angle) * ringRadius + offsetY * ring / rings;
+          if (spoke === 0) webContext.moveTo(x, y);
+          else webContext.lineTo(x, y);
+        }
+        webContext.stroke();
+      }
+
+      webContext.strokeStyle = "rgba(121, 225, 232, 0.1)";
+      for (let spoke = 0; spoke < spokes; spoke += 1) {
+        const angle = Math.PI * 2 * spoke / spokes;
+        webContext.beginPath();
+        webContext.moveTo(centerX + offsetX / rings, centerY + offsetY / rings);
+        webContext.lineTo(centerX + Math.cos(angle) * radius + offsetX, centerY + Math.sin(angle) * radius + offsetY);
+        webContext.stroke();
+      }
+
+      webContext.fillStyle = "rgba(121, 225, 232, 0.35)";
+      for (let spoke = 0; spoke < spokes; spoke += 1) {
+        const angle = Math.PI * 2 * spoke / spokes;
+        const x = centerX + Math.cos(angle) * radius + offsetX;
+        const y = centerY + Math.sin(angle) * radius + offsetY;
+        webContext.beginPath();
+        webContext.arc(x, y, 1.5, 0, Math.PI * 2);
+        webContext.fill();
+      }
+    }
+
+    function requestWebDraw() {
+      if (frameRequested) return;
+      frameRequested = true;
+      window.requestAnimationFrame(drawWeb);
+    }
+
+    function resizeWeb() {
+      const bounds = hero.getBoundingClientRect();
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+      canvasWidth = bounds.width;
+      canvasHeight = bounds.height;
+      webCanvas.width = Math.round(canvasWidth * pixelRatio);
+      webCanvas.height = Math.round(canvasHeight * pixelRatio);
+      webCanvas.style.width = `${canvasWidth}px`;
+      webCanvas.style.height = `${canvasHeight}px`;
+      webContext?.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+      requestWebDraw();
+    }
+
+    if (!reducedMotion.matches) {
+      hero.addEventListener("pointermove", event => {
+        const bounds = hero.getBoundingClientRect();
+        pointer = { x: event.clientX - bounds.left, y: event.clientY - bounds.top, active: true };
+        requestWebDraw();
+      });
+      hero.addEventListener("pointerleave", () => {
+        pointer.active = false;
+        requestWebDraw();
+      });
+    }
+
+    window.addEventListener("resize", resizeWeb);
+    resizeWeb();
+  </script>
 </body>
 </html>

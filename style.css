@@ -48,6 +48,30 @@ nav a { padding: 26px 0 23px; color: #c5cfdd; font-size: .91rem; transition: col
 nav a:hover, nav a.active { color: var(--white); }
 nav a.active { box-shadow: inset 0 -2px var(--cyan); }
 
+.countdown-bar {
+  position: relative;
+  z-index: 1;
+  border-bottom: 1px solid rgba(121, 225, 232, .22);
+  background: linear-gradient(105deg, #25374e, #304d61 58%, #294d51);
+  color: var(--white);
+  box-shadow: 0 8px 22px rgba(8, 18, 32, .22);
+}
+.countdown-inner {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  padding-block: 12px;
+}
+.countdown-message { margin: 0; color: #eff8fa; font-size: .91rem; font-weight: 700; }
+.countdown-clock { display: flex; align-items: center; gap: 10px; }
+.countdown-unit { min-width: 61px; display: grid; justify-items: center; padding: 7px 8px 6px; border: 1px solid rgba(255, 255, 255, .2); border-radius: 8px; background: rgba(12, 26, 40, .32); box-shadow: inset 0 1px rgba(255, 255, 255, .05); }
+.countdown-unit > span { font: 700 1.3rem/1.15 Consolas, "Courier New", monospace; font-variant-numeric: tabular-nums; }
+.countdown-unit small { margin-top: 2px; color: #d2dce5; font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; }
+.countdown-separator { color: #c5d6dc; font: 700 1.1rem Consolas, monospace; }
+.countdown-clock[hidden] { display: none; }
+
 .hero {
   position: relative;
   overflow: hidden;
@@ -55,6 +79,7 @@ nav a.active { box-shadow: inset 0 -2px var(--cyan); }
   color: var(--white);
   isolation: isolate;
 }
+.hero-web { position: absolute; z-index: 0; inset: 0; display: block; width: 100%; height: 100%; pointer-events: none; opacity: .82; }
 .hero-glow {
   position: absolute;
   z-index: -1;
@@ -66,6 +91,8 @@ nav a.active { box-shadow: inset 0 -2px var(--cyan); }
   background: radial-gradient(circle, rgba(46, 108, 133, .29), transparent 68%);
 }
 .hero-layout {
+  position: relative;
+  z-index: 1;
   min-height: 570px;
   display: grid;
   grid-template-columns: 1.05fr .95fr;
@@ -295,6 +322,9 @@ a.project-card:hover { transform: translateY(-2px); border-color: #b8dce0; box-s
   .header-inner { min-height: 68px; flex-wrap: wrap; gap: 0 18px; padding-block: 12px; }
   nav { gap: clamp(12px, 4vw, 25px); }
   nav a { padding: 12px 0 9px; font-size: .83rem; }
+  .countdown-inner { min-height: 72px; }
+  .countdown-clock { gap: 7px; }
+  .countdown-unit { min-width: 55px; }
   .hero-layout { min-height: 0; grid-template-columns: 1fr; gap: 20px; padding-block: 66px 45px; }
   .hero h1 { font-size: clamp(2.65rem, 8.5vw, 3.8rem); }
   .hero-art { min-height: 300px; }
@@ -329,6 +359,13 @@ a.project-card:hover { transform: translateY(-2px); border-color: #b8dce0; box-s
   .logo { font-size: .97rem; }
   nav { width: 100%; justify-content: space-between; gap: 8px; }
   nav a { font-size: .79rem; }
+  .countdown-inner { min-height: 66px; gap: 8px; }
+  .countdown-clock { gap: 4px; }
+  .countdown-unit { min-width: 43px; padding: 6px 4px; }
+  .countdown-unit > span { font-size: 1.02rem; }
+  .countdown-unit small { font-size: .5rem; }
+  .countdown-separator { font-size: .85rem; }
+  .countdown-message { font-size: .8rem; }
   .hero-layout { padding-top: 51px; }
   .hero h1 { font-size: clamp(2.1rem, 9vw, 2.8rem); }
   .hero-description { font-size: .96rem; }
@@ -382,6 +419,9 @@ a.project-card:hover { transform: translateY(-2px); border-color: #b8dce0; box-s
   .footer-inner { align-items: flex-start; flex-direction: column; justify-content: center; gap: 7px; padding-block: 20px; }
 }
 @media (max-width: 360px) {
+  .countdown-inner { min-height: 62px; }
+  .countdown-clock { gap: 3px; }
+  .countdown-unit { min-width: 39px; padding-inline: 3px; }
   .expo-button .live-badge { gap: 4px; padding-inline: 6px; font-size: .5rem; }
   .expo-label strong { font-size: .78rem; }
   .expo-label small { font-size: .68rem; }
