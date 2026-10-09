@@ -255,6 +255,9 @@ a.project-card:hover { transform: translateY(-2px); border-color: #b8dce0; box-s
 .project-list { display: grid; gap: 22px; }
 .project-detail { grid-template-columns: minmax(250px, .85fr) 1.15fr; }
 .project-detail .project-art { min-height: 300px; }
+.project-art > img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
+.project-art::after { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16, 27, 45, .26), transparent 38%, rgba(16, 27, 45, .12)); content: ""; }
+.project-art .project-chip { z-index: 1; }
 .back-link { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 25px; color: #c4d2df; font-size: .82rem; font-weight: 650; }
 .back-link:hover { color: var(--cyan); }
 .project-page-hero { background: linear-gradient(118deg, #101b2d, #183651 67%, #1b5961); }
@@ -264,6 +267,10 @@ a.project-card:hover { transform: translateY(-2px); border-color: #b8dce0; box-s
 .project-detail-visual { position: relative; display: grid; min-height: 330px; overflow: hidden; place-items: center; border-radius: 15px; background: radial-gradient(ellipse at 50% 110%, rgba(121, 225, 232, .24), transparent 58%), linear-gradient(145deg, #17263a, #243c52); }
 .project-detail-visual .project-chip { top: 20px; left: 20px; }
 .project-detail-visual .project-car { transform: scale(1.35) skewX(-7deg); }
+.project-detail-photos { grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; background: #17263a; }
+.project-detail-photos img { display: block; width: 100%; height: 310px; border-radius: 9px; object-fit: cover; }
+.project-detail-photo img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
+.project-detail-photo .project-chip { z-index: 1; }
 .project-description h2 { margin: 0 0 12px; font-size: 2rem; letter-spacing: -.045em; line-height: 1.15; }
 .project-description > p:not(.section-kicker, .project-note) { max-width: 560px; color: var(--muted); line-height: 1.8; }
 .project-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 25px; padding-block: 19px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -273,6 +280,13 @@ a.project-card:hover { transform: translateY(-2px); border-color: #b8dce0; box-s
 .project-facts .fact-status { display: flex; align-items: center; gap: 7px; color: #34765a; }
 .fact-status i { width: 7px; height: 7px; border-radius: 50%; background: #54bf87; }
 .project-description .project-note { margin: 13px 0 0; color: #708093; font-size: .78rem; }
+.gallery-section { background: #f6f7f9; }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr)); gap: 22px; }
+.gallery-card { min-width: 0; margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: var(--white); box-shadow: 0 8px 25px rgba(16, 27, 45, .06); }
+.gallery-card a { display: block; overflow: hidden; background: #e7edf2; }
+.gallery-card img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .25s ease; }
+.gallery-card a:hover img { transform: scale(1.035); }
+.gallery-card figcaption { padding: 14px 16px; color: var(--ink); font-size: .9rem; font-weight: 650; }
 .people-preview { padding-block: 70px 84px; background: linear-gradient(120deg, rgba(16, 27, 45, .8) 0%, rgba(26, 48, 71, .78) 53%, rgba(20, 60, 68, .8) 100%); }
 .people-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
 .people-column { min-width: 0; }
@@ -353,6 +367,7 @@ a.project-card:hover { transform: translateY(-2px); border-color: #b8dce0; box-s
   .mentor-arrow { margin-left: auto; }
   .project-detail-layout { grid-template-columns: 1fr; gap: 30px; }
   .project-detail-visual { min-height: 270px; }
+  .project-detail-photos img { height: 250px; }
   .page-hero { padding-block: 60px; }
 }
 @media (max-width: 520px) {
@@ -411,6 +426,8 @@ a.project-card:hover { transform: translateY(-2px); border-color: #b8dce0; box-s
   .project-card-copy { padding: 21px; }
   .project-description h2 { font-size: 1.7rem; }
   .project-detail-visual { min-height: 220px; }
+  .project-detail-photos { gap: 6px; padding: 6px; }
+  .project-detail-photos img { height: 210px; }
   .project-detail-visual .project-car { transform: scale(1.1) skewX(-7deg); }
   .member-card { gap: 13px; }
   .member-card img { width: 72px; height: 72px; }
